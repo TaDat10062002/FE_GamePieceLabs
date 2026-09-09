@@ -94,7 +94,7 @@ export function ProductDemo({ className }: ProductDemoProps) {
                 <SheetTrigger asChild>
                   <HotspotButton
                     aria-label={`Show product detail: ${hotspot.title}`}
-                    className="flex md:hidden"
+                    className="flex lg:hidden"
                   />
                 </SheetTrigger>
 
