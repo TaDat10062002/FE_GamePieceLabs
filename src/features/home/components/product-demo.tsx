@@ -100,7 +100,7 @@ export function ProductDemo({ className }: ProductDemoProps) {
 
                 <SheetContent
                   side="bottom"
-                  className="rounded-t-3xl border-neutral-200 bg-white px-6 pt-8 pb-[max(2rem,env(safe-area-inset-bottom))] text-neutral-950 md:hidden motion-reduce:transition-none motion-reduce:data-open:animate-none motion-reduce:data-closed:animate-none"
+                  className="rounded-t-3xl border-neutral-200 bg-white px-6 pt-8 pb-[max(2rem,env(safe-area-inset-bottom))] text-neutral-950 lg:hidden motion-reduce:transition-none motion-reduce:data-open:animate-none motion-reduce:data-closed:animate-none"
                 >
                   <div
                     aria-hidden="true"
