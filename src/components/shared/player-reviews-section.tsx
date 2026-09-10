@@ -16,10 +16,15 @@ import type {
 } from '@/features/home/types/player-review';
 import { cn } from '@/utils/cn';
 
-interface PlayerReviewsSectionProps {
+/** Carousel testimonial cho homepage; `variant` quyết định data list được dùng. */
+export interface PlayerReviewsSectionProps {
+    /** Class cho section ngoài cùng. */
     className?: string;
+    /** `image` dùng imageList; variant khác dùng contentList. */
     variant: PlayerReviewsVariant;
+    /** Review có ảnh; chỉ render khi `variant` là `image`. */
     imageList: readonly PlayerReviewImage[];
+    /** Review dạng text; chỉ render khi variant không phải `image`. */
     contentList: readonly PlayerReviewContent[];
 }
 

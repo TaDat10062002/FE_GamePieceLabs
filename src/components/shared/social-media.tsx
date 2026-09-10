@@ -22,18 +22,29 @@ import {
 import { cn } from "@/utils/cn";
 
 export interface SocialMediaItem {
+  /** Tên platform; `facebook`, `instagram`, `tiktok` sẽ dùng icon/màu dựng sẵn. */
   platform: string;
+  /** Nhãn accessibility và nội dung tooltip. */
   label: string;
+  /** URL external đến social profile. */
   href: string;
+  /** Icon ghi đè icon mặc định của platform. */
   icon?: ReactNode;
 }
 
+/** Thanh social cố định ở cạnh màn hình, có thể dùng controlled hoặc uncontrolled state. */
 export interface SocialMediaRailProps {
+  /** Danh sách social link cần hiển thị. */
   items: SocialMediaItem[];
+  /** Cạnh gắn rail. Mặc định `right`. */
   side?: "left" | "right";
+  /** Trạng thái mở lúc khởi tạo cho uncontrolled mode. */
   defaultOpen?: boolean;
+  /** Trạng thái mở controlled; truyền cùng `onOpenChange`. */
   open?: boolean;
+  /** Nhận trạng thái tiếp theo sau khi người dùng mở/đóng rail. */
   onOpenChange?: (open: boolean) => void;
+  /** Class cho thẻ `aside` cố định. */
   className?: string;
 }
 

@@ -10,7 +10,9 @@ import { cn } from "@/utils/cn";
 import { ChevronDown } from "lucide-react";
 import { useId, useState } from "react";
 
+/** Sort selector nội bộ; phù hợp khi trang không cần đồng bộ sort với URL/API. */
 export interface SortFilterProps {
+  /** Các nhãn sort; ưu tiên dùng string human-readable như `best selling`. */
   items: readonly string[];
 }
 

@@ -1,4 +1,6 @@
-type WrapperProps = {
+/** Container giới hạn chiều rộng và padding ngang chuẩn storefront. */
+export type WrapperProps = {
+  /** Nội dung cần đặt trong max-width layout. */
   children: React.ReactNode;
 };
 

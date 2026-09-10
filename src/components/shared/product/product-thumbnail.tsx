@@ -5,14 +5,21 @@ import Image from "next/image";
 import { cn } from "@/utils/cn";
 
 export interface ProductThumbnailImage {
+  /** ID ổn định của ảnh, dùng cho key và selection. */
   id: string;
+  /** URL/path ảnh thumbnail. */
   src: string;
+  /** Alt text mô tả ảnh. */
   alt: string;
 }
 
+/** Nút thumbnail chọn ảnh trong product detail gallery. */
 export interface ProductThumbnailProps {
+  /** Dữ liệu ảnh cần hiển thị. */
   image: ProductThumbnailImage;
+  /** Đánh dấu thumbnail đang được chọn. */
   isSelected?: boolean;
+  /** Callback khi người dùng chọn thumbnail. */
   onSelect?: (image: ProductThumbnailImage) => void;
 }
 

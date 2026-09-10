@@ -1,13 +1,21 @@
 import type { ReactNode } from "react";
 import clsx from "clsx";
 
-type StoreSectionHeadingProps = {
+/** Heading section storefront kèm description, CTA và optional divider. */
+export type StoreSectionHeadingProps = {
+  /** Eyebrow uppercase hiển thị trên title. */
   eyebrow?: string;
+  /** Heading h2 bắt buộc của section. */
   title: string;
+  /** Copy mô tả bên dưới heading. */
   description?: string;
+  /** CTA hoặc control đặt ở cuối heading row trên desktop. */
   action?: ReactNode;
+  /** Canh giữa heading và description. Mặc định `false`. */
   centered?: boolean;
+  /** Thêm đường kẻ hai phía của heading. Mặc định `false`. */
   divider?: boolean;
+  /** Class cho wrapper section heading. */
   className?: string;
 };
 

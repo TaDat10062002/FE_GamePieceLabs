@@ -9,22 +9,35 @@ import {
 } from "@/components/ui/pagination";
 import { cn } from "@/utils/cn";
 
+/** `default` hiển thị số trang; `simple` chỉ hiển thị Previous/Next. */
 export type PaginationVariant = "default" | "simple";
+/** Vị trí pagination trong container. */
 export type PaginationAlign = "left" | "center" | "right";
 
 export interface PaginationMeta {
+  /** Trang hiện tại, bắt đầu từ 1. */
   currentPage: number;
+  /** Số item trên một trang, dùng để tạo dòng tóm tắt. */
   pageSize: number;
+  /** Tổng số item của danh sách sau khi áp dụng filter. */
   totalItems: number;
+  /** Tổng số trang có thể điều hướng. */
   totalPages: number;
+  /** Cho biết có thể đi tới trang sau hay không. */
   hasNext: boolean;
+  /** Cho biết có thể quay lại trang trước hay không. */
   hasPrevious: boolean;
 }
 
-interface PaginationProps {
+/** Phân trang cho grid/list storefront đã có metadata từ API. */
+export interface PaginationProps {
+  /** Ẩn hoàn toàn pagination khi danh sách không cần phân trang. Mặc định `true`. */
   isShowed?: boolean;
+  /** Canh vị trí pagination trong container cha. */
   align: PaginationAlign;
+  /** Metadata phân trang đã được chuẩn hoá từ API hoặc state của trang. */
   pagination: PaginationMeta;
+  /** `default` hiện các số trang; `simple` chỉ hiện Previous/Next và trạng thái trang. */
   variant: PaginationVariant;
 }
 

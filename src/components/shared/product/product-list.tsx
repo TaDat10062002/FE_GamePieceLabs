@@ -10,15 +10,24 @@ import {
 } from "@/components/shared/pagination";
 import { cn } from "@/utils/cn";
 
+/** Số cột desktop của product grid. */
 export type ProductListColumnCount = 1 | 2 | 3 | 4 | 5;
 
-interface ProductListProps {
+/** Product grid storefront, đi kèm pagination metadata từ API/list state. */
+export interface ProductListProps {
+  /** Hiện pagination dưới grid. Mặc định `true`. */
   isShowed?: boolean;
+  /** Dữ liệu card sản phẩm cần render. */
   products: readonly ProductCardProps[];
+  /** Canh pagination trong container. */
   alignPagination: PaginationAlign;
+  /** Số cột từ breakpoint desktop trở lên. Mặc định `3`. */
   columns?: ProductListColumnCount;
+  /** Metadata nguồn cho pagination. */
   pagination: PaginationMeta;
+  /** Kiểu hiển thị pagination. */
   variantPagination: PaginationVariant;
+  /** Class bổ sung cho grid. */
   className?: string;
 }
 

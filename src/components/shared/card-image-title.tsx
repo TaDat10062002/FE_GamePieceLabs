@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/utils/cn";
 
+/** Tỉ lệ visual dựng sẵn cho category/collection card. */
 export type CardImageTitleAspectRatio =
   | "default"
   | "square"
@@ -13,22 +14,36 @@ export type CardImageTitleAspectRatio =
   | "landscape";
 
 export type CardImageTitleProps = {
+  /** Tên collection/category hiển thị trên ảnh. Có thể bỏ trống với card chỉ có icon mũi tên. */
   title?: string;
+  /** URL hoặc path ảnh card. */
   imageSrc: string;
+  /** Alt text mô tả ảnh card. */
   imageAlt: string;
+  /** Đường dẫn điều hướng khi `isClicked` là `true`. */
   href: string;
+  /** Prefix route, hữu ích khi `href` chỉ là slug con. */
   prefix?: string;
+  /** Tỉ lệ khung ảnh định nghĩa sẵn. */
   aspectRatio?: CardImageTitleAspectRatio;
+  /** Hiện vùng dành cho icon mũi tên. Icon chỉ xuất hiện khi card có thể click. */
   isArrow?: boolean;
+  /** Responsive sizes truyền vào `next/image`. */
   sizes?: string;
+  /** Điểm neo hiển thị ảnh, ví dụ `"center top"`. */
   imagePosition?: CSSProperties["objectPosition"];
+  /** Class cho wrapper/link bên ngoài card. */
   className?: string;
+  /** Class riêng cho text title. */
   titleClassName?: string;
+  /** Biến card thành link có hover/focus interaction. Mặc định `false`. */
   isClicked?: boolean;
 };
 
 export type CardImageTitleGridProps = {
+  /** Các `CardImageTitle` được sắp theo responsive grid. */
   children: ReactNode;
+  /** Class để thay đổi số cột hoặc khoảng cách grid. */
   className?: string;
 };
 

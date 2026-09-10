@@ -17,25 +17,42 @@ export interface SwitchFilterProps
     SwitchProps,
     "checked" | "defaultChecked" | "id" | "onCheckedChange" | "type"
   > {
+  /** Nhãn chính liên kết accessibility với switch. */
   label: ReactNode;
+  /** Nội dung badge khi filter đang bật; mặc định dùng `label`. */
   activeLabel?: ReactNode;
+  /** Props style/semantic bổ sung cho badge trạng thái active. */
   badgeProps?: Omit<ComponentProps<typeof Badge>, "children">;
+  /** Trạng thái controlled; dùng cùng `onCheckedChange`. */
   checked?: boolean;
+  /** Có hiện nút xóa trong badge active không. Mặc định `true`. */
   clearable?: boolean;
+  /** Props cho nút xóa badge, trừ event click do component quản lý. */
   clearButtonProps?: Omit<
     ComponentProps<typeof Button>,
     "children" | "onClick"
   >;
+  /** Trạng thái ban đầu ở uncontrolled mode. Mặc định `false`. */
   defaultChecked?: boolean;
+  /** Mô tả phụ phía dưới label. */
   description?: ReactNode;
+  /** Class riêng cho mô tả. */
   descriptionClassName?: string;
+  /** ID ghi đè generated ID để liên kết label/switch. */
   id?: string;
+  /** Class riêng cho label. */
   labelClassName?: string;
+  /** Vị trí label so với control. Mặc định `left`. */
   labelPosition?: "left" | "right";
+  /** Nhận trạng thái tiếp theo khi người dùng thay đổi switch. */
   onCheckedChange?: (checked: boolean) => void;
+  /** Được gọi sau khi người dùng nhấn xóa badge active. */
   onClear?: () => void;
+  /** Class cho wrapper label và switch. */
   rootClassName?: string;
+  /** Hiện badge active ở desktop khi switch bật. Mặc định `false`. */
   showActiveBadge?: boolean;
+  /** Kiểu native button của switch; mặc định `button`. */
   switchType?: SwitchProps["type"];
 }
 

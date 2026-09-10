@@ -22,6 +22,7 @@ import TypeFilter, {
 import { MobileFilterSheet } from "@/components/shared/filter/mobile-filter-sheet";
 import { cn } from "@/utils/cn";
 
+/** Props facade của filter; `variant` quyết định tập props hợp lệ. */
 type FilterVariantProps =
   | ({ variant: "price" } & PriceFilterProps)
   | ({ variant: "sort" } & SortFilterProps)
@@ -39,8 +40,11 @@ function withoutVariant<T extends { variant: string }>(
   return componentProps;
 }
 
-interface FilterMobileGroupProps {
+/** Gom các `<Filter>` vào một bottom sheet ở mobile; desktop không hiển thị group này. */
+export interface FilterMobileGroupProps {
+  /** Các component `Filter` có `variant` tương ứng. */
   children: ReactNode;
+  /** Class bổ sung cho sticky mobile wrapper. */
   className?: string;
 }
 

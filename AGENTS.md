@@ -50,9 +50,15 @@
 
 - Mỗi UI mới phải ưu tiên component trong `src/components/ui` và thêm bằng shadcn CLI khi component chưa tồn tại.
 - Không tự viết lại Button, Card, Input, Dialog, Sheet, Dropdown, Navigation Menu hoặc primitive khác nếu shadcn đã có.
+- KHÔNG tự ý sửa các component UI gốc của Radix hoặc shadcn trong `src/components/ui`, trừ khi người dùng yêu cầu rõ ràng.
 - Tailwind chỉ dùng để composition, spacing, responsive và semantic theme tokens.
 - Không thêm Ant Design/MUI/thư viện UI khác vào feature mới. Ant Design hiện tại được xem là legacy cho đến khi có task migrate riêng.
 - Interactive component mới thêm `"use client"` tại boundary nhỏ nhất cần state/event/browser API; page và layout mặc định là Server Component.
+
+## Shared UI Documentation Rules (Bắt buộc)
+
+- Mọi yêu cầu sửa UI phải chỉ định rõ component mục tiêu bằng cú pháp `@component.tsx`; không thực hiện yêu cầu mô tả chung chung hoặc không xác định được file component cần sửa.
+- Khi người dùng chỉ định một file component trong `src/components/shared` (ví dụ `@component.tsx`) và yêu cầu sửa code, phải cập nhật tài liệu tương ứng tại `ui-guides/<component-name>.md` để phản ánh thay đổi về API, hành vi hoặc cách sử dụng UI.
 
 ## Mock Data & API Boundary
 

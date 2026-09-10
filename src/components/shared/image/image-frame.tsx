@@ -3,27 +3,48 @@ import Image from "next/image";
 import { cn } from "@/utils/cn";
 import Wrapper from "../wrapper";
 
+/** Tỉ lệ banner dựng sẵn. */
 export type ImageFrameAspectRatio = "16/9" | "21/9" | "4/3" | "3/2" | "auto";
+/** Semantic heading level cho banner header. */
 export type ImageHeaderElementSize = "h1" | "h2" | "h3";
+/** Canh nội dung text overlay. */
 export type TextAlignType = "left" | "center" | "right";
 
+/** Hero/banner ảnh responsive có thể phủ text và overlay. */
 export type ImageFrameProps = {
+  /** URL ảnh. Phải được phép bởi `next.config.ts` nếu là remote image. */
   src: string;
+  /** Mô tả ảnh cho screen reader; để trống chỉ khi ảnh hoàn toàn trang trí. */
   alt?: string;
+  /** Nhãn ngắn hiển thị trên heading, ví dụ: "New collection". */
   eyebrow?: string;
+  /** Heading chính hiển thị trên ảnh. */
   header?: string;
+  /** Dòng tiêu đề phụ bên dưới heading. */
   title?: string;
+  /** Nội dung mô tả ngắn trên banner. */
   description?: string;
+  /** Chú thích hiển thị bên dưới khung ảnh. */
   caption?: string;
+  /** Semantic heading level của `header`. Mặc định `h1`. */
   headerSize?: ImageHeaderElementSize;
+  /** Canh cụm chữ trong banner. Mặc định `left`. */
   textAlign?: TextAlignType;
+  /** Tỉ lệ khung dựng sẵn hoặc Tailwind aspect class tùy chỉnh. */
   aspectRatio?: ImageFrameAspectRatio | string;
+  /** Tải ảnh ưu tiên; chỉ bật cho ảnh nằm trong màn hình đầu tiên. */
   priority?: boolean;
+  /** Quy tắc responsive image size truyền cho `next/image`. */
   sizes?: string;
+  /** `true` dùng gradient mặc định; truyền ReactNode để thay bằng overlay tùy chỉnh. */
   overlay?: boolean | ReactNode;
+  /** Class cho thẻ `figure` ngoài cùng. */
   containerClassName?: string;
+  /** Class cho khung visual của banner. */
   className?: string;
+  /** Class áp dụng trực tiếp vào ảnh. */
   imageClassName?: string;
+  /** Cách ảnh lấp đầy khung. Mặc định `cover`. */
   objectFit?: "cover" | "contain";
 };
 

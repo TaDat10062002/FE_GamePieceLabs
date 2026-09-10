@@ -3,8 +3,11 @@ import Link from "next/link";
 
 import { cn } from "@/utils/cn";
 
-interface LogoProps {
+/** Logo có link về home; phù hợp cho header/footer, không dùng làm ảnh brand thuần. */
+export interface LogoProps {
+  /** Class cho link wrapper. */
   className?: string;
+  /** Class cho ảnh logo, ví dụ điều chỉnh kích thước theo breakpoint. */
   imageClassName?: string;
 }
 

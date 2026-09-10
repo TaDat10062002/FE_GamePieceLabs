@@ -10,17 +10,29 @@ import {
   type SupportedCurrency,
 } from "@/utils/format-currency";
 
+/** Card sản phẩm dùng trong `ProductList` hoặc `ProductGallery`. */
 export type ProductCardProps = {
+  /** Tên sản phẩm hiển thị và dùng cho aria-label link. */
   name: string;
+  /** URL/path ảnh bìa sản phẩm. */
   imageSrc: string;
+  /** Alt text của ảnh bìa. */
   imageAlt: string;
+  /** Giá đơn vị theo currency đã chọn. */
   price: number;
+  /** Điểm đánh giá 0–5 hiển thị cạnh title. */
   rating: number;
+  /** Đơn vị tiền tệ được `formatCurrency` hỗ trợ. */
   currency: SupportedCurrency;
+  /** Nhãn CTA liên hệ. Mặc định `Liên hệ`. */
   quickAddLabel?: string;
+  /** Responsive sizes truyền vào `next/image`. */
   sizes?: string;
+  /** Class bổ sung cho khung card. */
   className?: string;
+  /** Slug URL-friendly của sản phẩm. */
   slug: string;
+  /** Mã GUI dùng để tạo URL chi tiết sản phẩm. */
   gui: string;
 };
 

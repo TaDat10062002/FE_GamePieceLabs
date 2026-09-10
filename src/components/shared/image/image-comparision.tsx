@@ -3,8 +3,11 @@
 import * as Slider from "react-compare-slider/components";
 import { useReactCompareSlider } from "react-compare-slider/hooks";
 
-type ImageComparisonProps = {
+/** So sánh trước/sau bằng slider kéo ngang; chỉ dùng khi hai ảnh cùng chủ thể/góc chụp. */
+export type ImageComparisonProps = {
+  /** Ảnh ở phía trái/trước khi kéo handle. */
   imageOne: string;
+  /** Ảnh ở phía phải/sau khi kéo handle. */
   imageTwo: string;
 };
 

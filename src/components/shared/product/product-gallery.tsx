@@ -18,21 +18,31 @@ import { cn } from "@/utils/cn";
 import { ProductThumbnail, ProductThumbnailImage } from "./product-thumbnail";
 
 interface ProductGalleryBaseProps {
+  /** Class cho carousel wrapper. */
   className?: string;
 }
 
+/** Carousel card sản phẩm nổi bật, dùng cho storefront section. */
 export interface FeaturedProductGalleryProps extends ProductGalleryBaseProps {
+  /** Chọn layout carousel card sản phẩm. */
   type: "featured";
+  /** Dữ liệu sản phẩm để render bằng `ProductCard`. */
   images: readonly ProductCardProps[];
 }
 
+/** Dải thumbnail cho product detail; desktop dọc, mobile ngang. */
 export interface DetailProductGalleryProps extends ProductGalleryBaseProps {
+  /** Chọn layout thumbnail product detail. */
   type: "detail";
+  /** Danh sách ảnh thumbnail. */
   images: readonly ProductThumbnailImage[];
+  /** Index ảnh được chọn theo controlled parent state. */
   selectedIndex?: number;
+  /** Nhận ảnh/index mới khi người dùng click thumbnail hoặc kéo carousel. */
   onImageSelect?: (image: ProductThumbnailImage, index: number) => void;
 }
 
+/** Union theo `type`; không trộn props của featured và detail. */
 export type ProductGalleryProps =
   | FeaturedProductGalleryProps
   | DetailProductGalleryProps;

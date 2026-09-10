@@ -18,9 +18,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-interface MobileFilterSheetProps {
+/** Bottom sheet chứa filter trên mobile; Apply chỉ đóng sheet, state do filter con quản lý. */
+export interface MobileFilterSheetProps {
+  /** Nội dung filter hiển thị trong sheet. */
   children: ReactNode;
+  /** Khóa trigger mở sheet. */
   disabled?: boolean;
+  /** Tiêu đề hiển thị trong sheet và dùng cho aria-label. */
   title: string;
 }
 

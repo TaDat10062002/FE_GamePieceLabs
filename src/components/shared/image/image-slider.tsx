@@ -16,20 +16,33 @@ import {
 import { cn } from "@/utils/cn";
 
 export type ImageSliderSlide = {
+  /** ID ổn định dùng làm React key. */
   id: string | number;
+  /** Heading hiển thị trên slide. */
   title: string;
+  /** Dòng mô tả tùy chọn dưới heading. */
   subtitle?: string;
+  /** URL/path ảnh nền slide. */
   imageSrc: string;
+  /** Alt text mô tả ảnh. */
   imageAlt: string;
+  /** Nhãn CTA dẫn tới `ctaHref`. */
   ctaLabel: string;
+  /** Đích điều hướng của CTA. */
   ctaHref: string;
 };
 
+/** Carousel hero/image campaign có CTA cho từng slide. */
 export type ImageSliderProps = {
+  /** Danh sách slide, ít nhất một phần tử để hiển thị nội dung. */
   slides: readonly ImageSliderSlide[];
+  /** Tự chuyển slide. Mặc định `true`. */
   autoplay?: boolean;
+  /** Thời gian giữa các lần tự chuyển, tính bằng ms. */
   autoplayInterval?: number;
+  /** Nhãn accessibility cho carousel. */
   ariaLabel?: string;
+  /** Class cho carousel wrapper. */
   className?: string;
 };
 

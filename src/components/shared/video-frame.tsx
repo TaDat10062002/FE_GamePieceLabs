@@ -1,6 +1,10 @@
+/** Khung video 16:9 cho local media hoặc YouTube embed. */
 export type VideoFrameProps = {
+    /** `local` dùng thẻ video native; `youtube` render iframe nhúng. */
     type: 'local' | 'youtube';
+    /** URL source video hoặc YouTube embed URL, không phải watch URL. */
     src: string;
+    /** Tiêu đề accessibility cho player/iframe. Mặc định `Video`. */
     title?: string;
 };
 

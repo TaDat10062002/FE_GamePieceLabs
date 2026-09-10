@@ -10,13 +10,19 @@ import { ChevronDown } from "lucide-react";
 import { useId, useState } from "react";
 
 export interface CountedFilterItem {
+  /** ID ổn định để theo dõi lựa chọn. */
   id: string;
+  /** Tên loại sản phẩm hiển thị cho người dùng. */
   label: string;
+  /** Số sản phẩm thuộc loại này. */
   count: number;
 }
 
+/** Bộ lọc loại sản phẩm; desktop dùng dropdown, mobile dùng checkbox list. */
 export interface TypeFilterProps {
+  /** Nhãn gốc cho trigger; component tự thêm từ `type`. */
   title?: string;
+  /** Các loại sản phẩm và số lượng tương ứng. */
   items: readonly CountedFilterItem[];
 }
 

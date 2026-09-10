@@ -9,20 +9,33 @@ import { cn } from "@/utils/cn";
 import { ChevronDown } from "lucide-react";
 import { type ReactNode, useId, useState } from "react";
 
+/** Currency được component tự tạo locale/label mặc định. */
 export type PriceCurrency = "USD" | "VND";
+/** Tuple khoảng giá theo thứ tự `[minimum, maximum]`. */
 export type PriceRange = readonly [minimum: number, maximum: number];
 
 export interface PriceFilterProps {
+  /** Loại tiền dùng để tự tạo currency label và locale mặc định. */
   currency?: PriceCurrency;
+  /** Nhãn tiền tệ ghi đè, ví dụ `"đ"`; không làm thay đổi định dạng số. */
   currencyLabel?: string;
+  /** Giá trị ban đầu cho uncontrolled mode. */
   defaultValue?: PriceRange;
+  /** Khóa trigger và slider. */
   disabled?: boolean;
+  /** Locale cho định dạng số, ví dụ `"vi-VN"`. */
   locale?: string;
+  /** Cận trên của khoảng giá. */
   max: number;
+  /** Cận dưới của khoảng giá. */
   min: number;
+  /** Callback khi người dùng thay đổi khoảng giá. */
   onValueChange?: (value: PriceRange) => void;
+  /** Bước nhảy của slider. Phải lớn hơn 0. */
   step?: number;
+  /** Nhãn cho trigger filter. */
   title?: string;
+  /** Khoảng giá controlled; dùng cùng `onValueChange`. */
   value?: PriceRange;
 }
 

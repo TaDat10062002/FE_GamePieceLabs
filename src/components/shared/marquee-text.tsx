@@ -12,10 +12,15 @@ const fontSizeClasses = {
     'text-8xl': 'text-5xl sm:text-7xl lg:text-8xl',
 } as const;
 
+/** Dòng chữ chạy trang trí; tôn trọng `prefers-reduced-motion`. */
 export type MarqueeTextProps = {
+    /** Nội dung lặp lại trong marquee, đồng thời là text cho screen reader. */
     title: string;
+    /** Thời gian một vòng chạy tính bằng giây. Mặc định `18`. */
     speed?: number;
+    /** Cỡ chữ responsive dựng sẵn. Mặc định `text-4xl`. */
     fontSize?: keyof typeof fontSizeClasses;
+    /** Class cho outer wrapper. */
     className?: string;
 };
 

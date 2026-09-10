@@ -1,6 +1,7 @@
 import type { ReactElement, ReactNode } from "react";
 
 export interface SectionTitleGroupProps {
+  /** Các section title được xếp dọc với khoảng cách chuẩn. */
   children: ReactNode;
 }
 
