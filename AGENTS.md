@@ -1,77 +1,75 @@
 ﻿<!-- BEGIN:nextjs-agent-rules -->
+
 # This is NOT the Next.js you know
 
-This version has breaking changes â€” APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
 
-## Knowledge Answer Enhancement (Bat buoc)
+## Knowledge Answer Enhancement (Bắt buộc)
 
-- Khi user hoi kien thuc (trong do an hoac tren mang):
-  - Tra loi kien thuc chinh.
-  - Them it nhat 1 bai toan doi song/thuc te thuong gap co su dung kien thuc do.
-  - Giai thich vi sao kien thuc do phu hop voi bai toan.
-- Uu tien vi du gan voi FE web, user flow, hieu nang, bao tri hoac e-commerce.
+- Khi user hỏi kiến thức (trong đồ án hoặc trên mạng):
+  - Trả lời kiến thức chính.
+  - Thêm ít nhất 1 bài toán đời sống/thực tế thường gặp có sử dụng kiến thức đó.
+  - Giải thích vì sao kiến thức đó phù hợp với bài toán.
+- Ưu tiên ví dụ gần với FE web, user flow, hiệu năng, bảo trì hoặc e-commerce.
 
-## Next Auth Route Rules (Bat buoc)
+## Next Auth Route Rules (Bắt buộc)
 
-- Uu tien dung `src/app/api/**/route.ts` hoac route group API tuong duong cho auth logic (authorize redirect, callback, refresh, logout).
-- Khong doi token truc tiep trong client page neu co the doi qua server route.
-- Khong luu token OAuth trong `localStorage`/`sessionStorage`.
-- Uu tien mo hinh session cookie:
+- Ưu tiên dùng `src/app/api/**/route.ts` hoặc route group API tương đương cho auth logic (authorize redirect, callback, refresh, logout).
+- Không đổi token trực tiếp trong client page nếu có thể đổi qua server route.
+- Không lưu token OAuth trong `localStorage`/`sessionStorage`.
+- Ưu tiên mô hình session cookie:
   - cookie `HttpOnly + Secure + SameSite=Strict`
-  - token/refresh token luu server-side (in-memory cho dev, DB/Redis cho production).
-- UI pages (`src/app/**/page.tsx`) chi nen xu ly view state, khong xu ly secret/token raw.
+  - token/refresh token lưu server-side (in-memory cho dev, DB/Redis cho production).
+- UI pages (`src/app/**/page.tsx`) chỉ nên xử lý view state, không xử lý secret/token raw.
 
-## Source Structure Rules (Bat buoc)
+## Source Structure Rules (Bắt buộc)
 
-- Toan bo application source dat trong `src/`; alias `@/*` tro toi `src/*`.
-- `src/app` chi giu file conventions cua Next.js: `page.tsx`, `layout.tsx`, `route.ts`, `loading.tsx`, `error.tsx`, metadata files va composition can thiet cho route.
-- Component dung chung dat trong:
-  - `src/components/ui`: atomic component do shadcn quan ly.
-  - `src/components/layouts`: Header, Footer va shell dung chung.
-  - `src/components/shared`: component duoc nhieu feature su dung.
-- Ngoai cac layout lon nhu Header va Footer, component co the xuat hien lap lai o nhieu vi tri, tren nhieu trang hoac voi nhieu bien the phai dat trong `src/components/shared`.
-- Chi dat component trong `src/components/layouts` khi no thuc su dinh nghia layout/shell lon cua ung dung.
-- Khong dat component nghiep vu, type hoac API client rai rac trong `src/app`.
+- Toàn bộ application source đặt trong `src/`; alias `@/*` trỏ tới `src/*`.
+- `src/app` chỉ giữ file conventions của Next.js: `page.tsx`, `layout.tsx`, `route.ts`, `loading.tsx`, `error.tsx`, metadata files và composition cần thiết cho route.
+- Component dùng chung đặt trong:
+  - `src/components/ui`: atomic component do shadcn quản lý.
+  - `src/components/layouts`: Header, Footer và shell dùng chung.
+  - `src/components/shared`: component được nhiều feature sử dụng.
+- Ngoài các layout lớn như Header và Footer, component có thể xuất hiện lặp lại ở nhiều vị trí, trên nhiều trang hoặc với nhiều biến thể phải đặt trong `src/components/shared`.
+- Chỉ đặt component trong `src/components/layouts` khi nó thực sự định nghĩa layout/shell lớn của ứng dụng.
+- Không đặt component nghiệp vụ, type hoặc API client rải rác trong `src/app`.
 
-## Feature Folder Rules (Bat buoc)
+## Feature Folder Rules (Bắt buộc)
 
-- Moi feature gom code theo domain tai `src/features/<feature>`.
-- Cau truc chi tao khi thuc su can:
-  - `components/`: UI rieng cua feature.
+- Mỗi feature gom code theo domain tại `src/features/<feature>`.
+- Cấu trúc chỉ tạo khi thực sự cần:
+  - `components/`: UI riêng của feature.
   - `data/`: typed mock data.
   - `services/`: API/backend communication.
-  - `types/`: DTO va UI model cua feature.
-  - `lib/` hoac `server/`: logic noi bo hoac server-only.
-- API/type chi dung cho mot feature khong dat trong `src/lib`, `src/services` hoac `src/types` dung chung.
-- Khong tao abstraction/repository/interface neu feature chi co mot implementation don gian.
+  - `types/`: DTO và UI model của feature.
+  - `lib/` hoặc `server/`: logic nội bộ hoặc server-only.
+- API/type chỉ dùng cho một feature không đặt trong `src/lib`, `src/services` hoặc `src/types` dùng chung.
+- Không tạo abstraction/repository/interface nếu feature chỉ có một implementation đơn giản.
 
-## shadcn UI Rules (Bat buoc)
+## shadcn UI Rules (Bắt buộc)
 
-- Moi UI moi phai uu tien component trong `src/components/ui` va them bang shadcn CLI khi component chua ton tai.
-- Khong tu viet lai Button, Card, Input, Dialog, Sheet, Dropdown, Navigation Menu hoac primitive khac neu shadcn da co.
-- Tailwind chi dung de composition, spacing, responsive va semantic theme tokens.
-- Khong them Ant Design/MUI/thu vien UI khac vao feature moi. Ant Design hien tai duoc xem la legacy cho den khi co task migrate rieng.
-- Interactive component moi them `"use client"` tai boundary nho nhat can state/event/browser API; page va layout mac dinh la Server Component.
+- Mỗi UI mới phải ưu tiên component trong `src/components/ui` và thêm bằng shadcn CLI khi component chưa tồn tại.
+- Không tự viết lại Button, Card, Input, Dialog, Sheet, Dropdown, Navigation Menu hoặc primitive khác nếu shadcn đã có.
+- Tailwind chỉ dùng để composition, spacing, responsive và semantic theme tokens.
+- Không thêm Ant Design/MUI/thư viện UI khác vào feature mới. Ant Design hiện tại được xem là legacy cho đến khi có task migrate riêng.
+- Interactive component mới thêm `"use client"` tại boundary nhỏ nhất cần state/event/browser API; page và layout mặc định là Server Component.
 
 ## Mock Data & API Boundary
 
-- Mock data phai co type ro rang va dat trong `src/features/<feature>/data`.
-- Component hien thi nhan data qua props, khong doc URL backend hoac environment variable truc tiep.
-- Khi noi API that, dat ham giao tiep backend trong `src/features/<feature>/services` hoac BFF `route.ts` neu co security-sensitive logic.
-- Header/Footer mock khong duoc goi auth, cart hoac product API khi user chua yeu cau noi du lieu that.
+- Mock data phải có type rõ ràng và đặt trong `src/features/<feature>/data`.
+- Component hiển thị nhận data qua props, không đọc URL backend hoặc environment variable trực tiếp.
+- Khi nối API thật, đặt hàm giao tiếp backend trong `src/features/<feature>/services` hoặc BFF `route.ts` nếu có security-sensitive logic.
+- Header/Footer mock không được gọi auth, cart hoặc product API khi user chưa yêu cầu nối dữ liệu thật.
 
 ## Verification Rules
 
-- Truoc khi code, doc guide lien quan trong `node_modules/next/dist/docs/` dung voi Next.js dang cai.
-- Sau thay doi source, chay toi thieu `npm run lint` va `npm run build`.
-- Khong ket luan hoan thanh neu build/type-check con loi do thay doi moi.
-- Warning co san phai duoc ghi nhan; khong tranh thu refactor warning ngoai scope.
+- Không kết luận hoàn thành nếu build/type-check còn lỗi do thay đổi mới.
+- Warning có sẵn phải được ghi nhận; không tranh thủ refactor warning ngoài scope.
 
 ## Storefront Layout Rules
 
-- Storefront shell duoc compose tai `src/app/(storefront)/layout.tsx`.
-- Header dat tai `src/components/layouts/header`; Footer dat tai `src/components/layouts/footer`.
-- Typed mock data cho Header/Footer dat tai `src/features/navigation/data` va type dat tai `src/features/navigation/types`.
-- Footer presentation nhan `FooterContent` qua props; khong hard-code API URL hoac goi backend trong component.
-- Currency/language selector chi la UI mock local cho den khi user yeu cau noi persistence/API that.
+- Storefront shell được compose tại `src/app/(storefront)/layout.tsx`.
+- Header đặt tại `src/components/layouts/header`; Footer đặt tại `src/components/layouts/footer`.
+- Typed mock data cho Header/Footer đặt tại `src/features/navigation/data` và type đặt tại `src/features/navigation/types`.
+- Footer presentation nhận `FooterContent` qua props; không hard-code API URL hoặc gọi backend trong component.
+- Currency/language selector chỉ là UI mock local cho đến khi user yêu cầu nối persistence/API thật.

@@ -1,4 +1,11 @@
-import type { ReactNode } from "react";
+import { Children, isValidElement, type ReactNode } from "react";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 import PriceFilter, {
   type PriceFilterProps,
@@ -12,6 +19,7 @@ import SwitchFilter, {
 import TypeFilter, {
   type TypeFilterProps,
 } from "@/components/shared/filter/type-filter";
+import { MobileFilterSheet } from "@/components/shared/filter/mobile-filter-sheet";
 import { cn } from "@/utils/cn";
 
 type FilterVariantProps =
@@ -20,29 +28,60 @@ type FilterVariantProps =
   | ({ variant: "switch" } & SwitchFilterProps)
   | ({ variant: "type" } & TypeFilterProps);
 
-export type FilterProps = FilterVariantProps & {
-  wrapperClassName?: string;
-};
+export type FilterProps = FilterVariantProps;
 
-function withoutWrapperProps<
-  T extends { variant: string; wrapperClassName?: string },
->(props: T): Omit<T, "variant" | "wrapperClassName"> {
-  const { variant, wrapperClassName, ...componentProps } = props;
+function withoutVariant<T extends { variant: string }>(
+  props: T,
+): Omit<T, "variant"> {
+  const { variant, ...componentProps } = props;
   void variant;
-  void wrapperClassName;
 
   return componentProps;
 }
 
-interface FilterWrapperProps {
+interface FilterMobileGroupProps {
   children: ReactNode;
   className?: string;
 }
 
-function FilterWrapper({ children, className }: FilterWrapperProps) {
+const mobileFilterTitles = {
+  price: "Price",
+  sort: "Sort by",
+  switch: "Availability",
+  type: "Product type",
+} satisfies Record<FilterVariantProps["variant"], string>;
+
+export function FilterMobileGroup({
+  children,
+  className,
+}: FilterMobileGroupProps) {
   return (
-    <div className={cn("inline-flex min-w-0 py-1 sm:mx-2 sm:px-2 sm:py-2", className)}>
-      {children}
+    <div
+      className={cn(
+        "sticky top-20 z-40 flex w-full justify-center py-1 sm:hidden",
+        className,
+      )}
+    >
+      <MobileFilterSheet title="Filters">
+        <Accordion type="multiple">
+          {Children.toArray(children).map((child) => {
+            if (!isValidElement<FilterProps>(child)) {
+              return child;
+            }
+
+            const variant = child.props.variant;
+
+            return (
+              <AccordionItem key={variant} value={variant}>
+                <AccordionTrigger className="font-bold">
+                  {mobileFilterTitles[variant]}
+                </AccordionTrigger>
+                <AccordionContent className="pt-2">{child}</AccordionContent>
+              </AccordionItem>
+            );
+          })}
+        </Accordion>
+      </MobileFilterSheet>
     </div>
   );
 }
@@ -50,29 +89,13 @@ function FilterWrapper({ children, className }: FilterWrapperProps) {
 export default function Filter(props: FilterProps) {
   switch (props.variant) {
     case "price":
-      return (
-        <FilterWrapper className={props.wrapperClassName}>
-          <PriceFilter {...withoutWrapperProps(props)} />
-        </FilterWrapper>
-      );
+      return <PriceFilter {...withoutVariant(props)} />;
     case "sort":
-      return (
-        <FilterWrapper className={props.wrapperClassName}>
-          <SortFilter {...withoutWrapperProps(props)} />
-        </FilterWrapper>
-      );
+      return <SortFilter {...withoutVariant(props)} />;
     case "switch":
-      return (
-        <FilterWrapper className={props.wrapperClassName}>
-          <SwitchFilter {...withoutWrapperProps(props)} />
-        </FilterWrapper>
-      );
+      return <SwitchFilter {...withoutVariant(props)} />;
     case "type":
-      return (
-        <FilterWrapper className={props.wrapperClassName}>
-          <TypeFilter {...withoutWrapperProps(props)} />
-        </FilterWrapper>
-      );
+      return <TypeFilter {...withoutVariant(props)} />;
   }
 }
 

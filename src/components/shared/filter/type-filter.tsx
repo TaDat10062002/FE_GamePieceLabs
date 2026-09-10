@@ -4,6 +4,7 @@ import DropdownMenu, {
   type DropdownMenuEntry,
 } from "@/components/shared/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/utils/cn";
 import { ChevronDown } from "lucide-react";
 import { useId, useState } from "react";
@@ -19,41 +20,25 @@ export interface TypeFilterProps {
   items: readonly CountedFilterItem[];
 }
 
-export default function TypeFilter({
-  items,
-  title = "Product",
-}: TypeFilterProps) {
-  const triggerId = useId();
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+interface DesktopTypeFilterProps {
+  dropdownItems: DropdownMenuEntry[];
+  isOpen: boolean;
+  onOpenChange: (open: boolean) => void;
+  title: string;
+  triggerId: string;
+}
 
-  const dropdownItems: DropdownMenuEntry[] = [
-    {
-      id: "product-type-options",
-      type: "group",
-      props: {
-        className: "grid grid-cols-1 gap-1 sm:grid-cols-3 sm:gap-2",
-      },
-      items: items.map((item) => ({
-        id: item.id,
-        type: "item",
-        label: `${item.label} (${item.count})`,
-        props: {
-          onSelect: () => setSelectedId(item.id),
-          className: cn(
-            "justify-center rounded-lg px-4 py-4 text-center text-base text-muted-foreground transition-colors sm:py-5",
-            selectedId === item.id &&
-              "bg-accent font-semibold text-accent-foreground",
-          ),
-        },
-      })),
-    },
-  ];
-
+function DesktopTypeFilter({
+  dropdownItems,
+  isOpen,
+  onOpenChange,
+  title,
+  triggerId,
+}: DesktopTypeFilterProps) {
   return (
     <DropdownMenu
       items={dropdownItems}
-      rootProps={{ open: isOpen, onOpenChange: setIsOpen }}
+      rootProps={{ open: isOpen, onOpenChange }}
       triggerProps={{ asChild: true }}
       contentProps={{
         align: "center",
@@ -84,5 +69,100 @@ export default function TypeFilter({
         </Button>
       }
     />
+  );
+}
+
+interface MobileTypeFilterProps {
+  items: readonly CountedFilterItem[];
+  onSelectedIdsChange: (itemId: string, checked: boolean) => void;
+  selectedIds: readonly string[];
+  triggerId: string;
+}
+
+function MobileTypeFilter({
+  items,
+  onSelectedIdsChange,
+  selectedIds,
+  triggerId,
+}: MobileTypeFilterProps) {
+  return (
+    <div className="grid">
+      {items.map((item) => (
+        <label
+          key={item.id}
+          htmlFor={`${triggerId}-${item.id}`}
+          className="flex cursor-pointer items-center gap-3 rounded-lg py-1 text-base leading-snug"
+        >
+          <Checkbox
+            id={`${triggerId}-${item.id}`}
+            checked={selectedIds.includes(item.id)}
+            onCheckedChange={(checked) => onSelectedIdsChange(item.id, checked === true)}
+          />
+          <span className="flex-1 font-bold">
+            {item.label} ({item.count})
+          </span>
+        </label>
+      ))}
+    </div>
+  );
+}
+
+export default function TypeFilter({
+  items,
+  title = "Product",
+}: TypeFilterProps) {
+  const triggerId = useId();
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<readonly string[]>([]);
+
+  const dropdownItems: DropdownMenuEntry[] = [
+    {
+      id: "product-type-options",
+      type: "group",
+      props: {
+        className: "grid grid-cols-1 gap-1 sm:grid-cols-3 sm:gap-2",
+      },
+      items: items.map((item) => ({
+        id: item.id,
+        type: "item",
+        label: `${item.label} (${item.count})`,
+        props: {
+          onSelect: () => setSelectedIds([item.id]),
+          className: cn(
+            "justify-center rounded-lg px-4 py-4 text-center text-base text-muted-foreground transition-colors sm:py-5",
+            selectedIds.includes(item.id) &&
+              "bg-accent font-semibold text-accent-foreground",
+          ),
+        },
+      })),
+    },
+  ];
+
+  return (
+    <>
+      <div className="max-sm:hidden">
+      <DesktopTypeFilter
+        dropdownItems={dropdownItems}
+        isOpen={isOpen}
+        onOpenChange={setIsOpen}
+        title={title}
+        triggerId={triggerId}
+      />
+      </div>
+      <div className="sm:hidden">
+        <MobileTypeFilter
+          items={items}
+          selectedIds={selectedIds}
+          triggerId={triggerId}
+          onSelectedIdsChange={(itemId, checked) => {
+            setSelectedIds((currentIds) =>
+              checked
+                ? [...currentIds, itemId]
+                : currentIds.filter((id) => id !== itemId),
+            );
+          }}
+        />
+      </div>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 import { CardImageTitle } from "@/components/shared/card-image-title";
-import Filter from "@/components/shared/filter";
+import Filter, { FilterMobileGroup } from "@/components/shared/filter";
 import { SectionTitle } from "@/components/shared/section-title";
 import Wrapper from "@/components/shared/wrapper";
 import { CollectionsPageData } from "../types/tokens";
@@ -13,6 +13,12 @@ interface TokensProps {
 
 export function Tokens({ data }: TokensProps) {
   const { hero, editorial, products, otherCategories } = data;
+  const filters = {
+    availability: <Filter variant="switch" label="In stock only" activeLabel="In Stock" defaultChecked={false} labelPosition="left" showActiveBadge />,
+    type: <Filter items={[{ id: "accessories", label: "Accessories", count: 4 }]} title="Product" variant="type" />,
+    price: <Filter variant="price" min={0} max={274} step={1} currency="USD" />,
+    sort: <Filter variant="sort" items={["featured", "most relevant", "best selling", "alphabetically, a-z", "alphabetically, z-a", "price, low to high", "price, high to low", "date, old to new", "date, new to old"]} />,
+  };
 
   return (
     <>
@@ -32,56 +38,29 @@ export function Tokens({ data }: TokensProps) {
       />
 
       <Wrapper>
-        <div className="grid w-full grid-cols-2 items-start gap-x-2 gap-y-1 py-3 sm:flex sm:gap-0">
+        <div className="grid w-full grid-cols-2 items-start gap-x-2 gap-y-1 py-3 max-sm:hidden sm:flex sm:gap-0">
           <div className="min-w-0 text-left sm:flex-1">
-            <Filter
-              variant="switch"
-              label="In stock only"
-              activeLabel="In Stock"
-              defaultChecked={false}
-              labelPosition="left"
-              showActiveBadge
-              wrapperClassName="m-0 w-full justify-start p-0 sm:w-auto sm:px-2 sm:py-2"
-            />
+            {filters.availability}
           </div>
 
           <div className="contents sm:flex sm:flex-1 sm:items-start sm:justify-center sm:gap-2 sm:text-center">
-            <Filter
-              items={[{ id: "accessories", label: "Accessories", count: 4 }]}
-              title="Product"
-              variant="type"
-              wrapperClassName="m-0 w-full justify-end p-0 sm:w-auto sm:px-2 sm:py-2"
-            />
-            <Filter
-              variant="price"
-              min={0}
-              max={274}
-              step={1}
-              currency="USD"
-              wrapperClassName="m-0 w-full justify-start p-0 sm:w-auto sm:px-2 sm:py-2"
-            />
+            {filters.type}
+            {filters.price}
           </div>
 
           <div className="min-w-0 text-right sm:flex-1">
-            <Filter
-              variant="sort"
-              items={[
-                "featured",
-                "most relevant",
-                "best selling",
-                "alphabetically, a-z",
-                "alphabetically, z-a",
-                "price, low to high",
-                "price, high to low",
-                "date, old to new",
-                "date, new to old",
-              ]}
-              wrapperClassName="m-0 w-full justify-end p-0 sm:w-auto sm:px-2 sm:py-2"
-            />
+            {filters.sort}
           </div>
         </div>
 
         <section className="pt-8" aria-labelledby="collection-products-heading">
+          <FilterMobileGroup>
+            {filters.availability}
+            {filters.type}
+            {filters.price}
+            {filters.sort}
+          </FilterMobileGroup>
+
           <div className="mb-7 flex items-center justify-between gap-4">
             <h2 id="collection-products-heading" className="sr-only">
               Board game inserts
@@ -123,9 +102,7 @@ export function Tokens({ data }: TokensProps) {
             className="rounded-none border-0 bg-transparent shadow-none sm:rounded-none"
           />
 
-          <h2 className="type-h2 mt-7 text-neutral-950">
-            {editorial.heading}
-          </h2>
+          <h2 className="type-h2 mt-7 text-neutral-950">{editorial.heading}</h2>
           <p className="type-prose mt-6 text-base text-neutral-700">
             {editorial.description}
           </p>

@@ -9,6 +9,11 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import type { ProductImageDto } from "@/features/products/types/product-details";
 import { ProductGallery } from "@/components/shared/product/product-gallery";
 import { cn } from "@/utils/cn";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
 interface ProductImageGalleryProps {
   images: ProductImageDto[];
@@ -63,7 +68,7 @@ export default function ProductImageGallery({
             </div>
           )}
 
-          <div className="relative order-1 aspect-square min-w-0 overflow-hidden rounded-2xl bg-neutral-950 sm:order-2">
+          <div className="max-sm:hidden relative order-1 aspect-square min-w-0 overflow-hidden rounded-2xl bg-neutral-950 sm:order-2">
             {selectedImage?.publicUrl ? (
               <Image
                 src={getLargeImageUrl(selectedImage.publicUrl)}
@@ -94,39 +99,26 @@ export default function ProductImageGallery({
             )}
           </div>
 
-          {sortedImages.length > 1 && (
-            <div
-              role="group"
-              aria-label="Chọn ảnh sản phẩm"
-              className="order-2 flex items-center justify-center gap-1 sm:hidden"
-            >
-              {sortedImages.map((image, index) => {
-                const isSelected = selectedImageIndex === index;
-
-                return (
-                  <Button
-                    key={image.id}
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    aria-label={`Xem ảnh ${index + 1} của ${productName}`}
-                    aria-pressed={isSelected}
-                    onClick={() => setSelectedImageIndex(index)}
-                    className="group size-10 rounded-full hover:bg-transparent focus-visible:ring-neutral-950"
-                  >
-                    <span
-                      className={cn(
-                        "size-2 rounded-full transition-colors",
-                        isSelected
-                          ? "bg-neutral-950"
-                          : "bg-neutral-300 group-hover:bg-neutral-500",
-                      )}
+          <Carousel className="sm:hidden w-full">
+            <CarouselContent>
+              {galleryImages.map((image) => (
+                <CarouselItem key={image.id}>
+                  <div className="relative order-1 aspect-square min-w-0 overflow-hidden rounded-2xl bg-neutral-950 sm:order-2">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      priority
+                      unoptimized
+                      sizes="(max-width: 639px) calc(100vw - 64px), (max-width: 1023px) calc(100vw - 160px), 50vw"
+                      className="object-contain transition-transform duration-500 hover:scale-[1.015]"
+                      onClick={() => setIsZoomOpen(true)}
                     />
-                  </Button>
-                );
-              })}
-            </div>
-          )}
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </div>
 

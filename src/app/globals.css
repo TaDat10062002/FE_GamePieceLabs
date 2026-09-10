@@ -142,7 +142,8 @@
   font-kerning: normal;
 }
 
-.storefront-typography :where(
+.storefront-typography
+  :where(
     h1,
     h2,
     h3,
@@ -163,7 +164,8 @@
   text-wrap: balance;
 }
 
-.storefront-typography :where(.font-semibold, .font-bold, .font-extrabold, .font-black),
+.storefront-typography
+  :where(.font-semibold, .font-bold, .font-extrabold, .font-black),
 .storefront-typography [data-slot="button"] {
   font-weight: 700;
 }

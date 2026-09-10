@@ -39,6 +39,28 @@ export interface SwitchFilterProps
   switchType?: SwitchProps["type"];
 }
 
+interface DesktopSwitchFilterProps {
+  activeBadge: ReactNode;
+  filterControl: ReactNode;
+}
+
+function DesktopSwitchFilter({ activeBadge, filterControl }: DesktopSwitchFilterProps) {
+  return (
+    <>
+      {filterControl}
+      {activeBadge}
+    </>
+  );
+}
+
+interface MobileSwitchFilterProps {
+  filterControl: ReactNode;
+}
+
+function MobileSwitchFilter({ filterControl }: MobileSwitchFilterProps) {
+  return <>{filterControl}</>;
+}
+
 export default function SwitchFilter({
   activeLabel,
   badgeProps,
@@ -79,7 +101,7 @@ export default function SwitchFilter({
     onClear?.();
   }
 
-  return (
+  const filterControl = (
     <div className={cn("inline-flex flex-col items-start gap-2", rootClassName)}>
       <div
         className={cn(
@@ -120,33 +142,45 @@ export default function SwitchFilter({
         />
       </div>
 
-      {showActiveBadge && isChecked ? (
-        <Badge
-          {...badgeProps}
-          className={cn(
-            "gap-2 rounded-4xl border-0 bg-gray-200 px-5 py-3 text-base font-medium leading-snug text-black sm:py-4 sm:text-sm",
-            badgeProps?.className,
-          )}
-        >
-          {activeLabel ?? label}
-          {clearable ? (
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon-sm"
-              aria-label="Clear switch filter"
-              {...clearButtonProps}
-              className={cn(
-                "size-5 rounded-full p-0 hover:bg-foreground/10",
-                clearButtonProps?.className,
-              )}
-              onClick={clearFilter}
-            >
-              <X aria-hidden="true" className="size-3.5" />
-            </Button>
-          ) : null}
-        </Badge>
-      ) : null}
     </div>
+  );
+
+  const activeBadge = showActiveBadge && isChecked ? (
+    <Badge
+      {...badgeProps}
+      className={cn(
+        "gap-2 rounded-4xl border-0 bg-gray-200 px-5 py-3 text-base font-medium leading-snug text-black sm:py-4 sm:text-sm",
+        badgeProps?.className,
+      )}
+    >
+      {activeLabel ?? label}
+      {clearable ? (
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon-sm"
+          aria-label="Clear switch filter"
+          {...clearButtonProps}
+          className={cn(
+            "size-5 rounded-full p-0 hover:bg-foreground/10",
+            clearButtonProps?.className,
+          )}
+          onClick={clearFilter}
+        >
+          <X aria-hidden="true" className="size-3.5" />
+        </Button>
+      ) : null}
+    </Badge>
+  ) : null;
+
+  return (
+    <>
+      <div className="max-sm:hidden">
+        <DesktopSwitchFilter filterControl={filterControl} activeBadge={activeBadge} />
+      </div>
+      <div className="sm:hidden">
+        <MobileSwitchFilter filterControl={filterControl} />
+      </div>
+    </>
   );
 }

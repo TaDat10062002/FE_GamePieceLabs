@@ -81,7 +81,7 @@ export function ProductCard({
           </h3>
 
           <span
-            className="inline-flex shrink-0 items-center gap-1 text-sm text-neutral-950"
+            className="inline-flex shrink-0 items-center pt-1 gap-1 text-sm text-neutral-950"
             aria-label={`${rating.toFixed(1)} out of 5 stars`}
           >
             {rating.toFixed(1)}

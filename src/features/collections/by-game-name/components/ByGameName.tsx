@@ -1,5 +1,5 @@
 import { CardImageTitle } from "@/components/shared/card-image-title";
-import Filter from "@/components/shared/filter";
+import Filter, { FilterMobileGroup } from "@/components/shared/filter";
 import { ImageFrame } from "@/components/shared/image/image-frame";
 import { MarqueeText } from "@/components/shared/marquee-text";
 import { ProductList } from "@/components/shared/product/product-list";
@@ -25,6 +25,12 @@ const sortOptions = [
 
 export function ByGameName({ data }: ByGameNameProps) {
   const { title, editorial, products, otherCategories } = data;
+  const filters = {
+    availability: <Filter variant="switch" label="In stock only" activeLabel="In Stock" defaultChecked={false} labelPosition="left" showActiveBadge />,
+    type: <Filter items={[{ id: "insert", label: "Insert", count: 1 }]} title="Product" variant="type" />,
+    price: <Filter variant="price" min={0} max={283500} step={5000} currency="VND" />,
+    sort: <Filter variant="sort" items={sortOptions} />,
+  };
 
   return (
     <>
@@ -33,39 +39,15 @@ export function ByGameName({ data }: ByGameNameProps) {
           {title}
         </h1>
 
-        <div className="grid w-full grid-cols-2 items-center gap-x-2 gap-y-4 border-y border-neutral-200 py-4 sm:flex sm:justify-between sm:gap-x-5">
-          <Filter
-            variant="switch"
-            label="In stock only"
-            activeLabel="In Stock"
-            defaultChecked={false}
-            labelPosition="left"
-            showActiveBadge
-            wrapperClassName="m-0 w-full justify-start p-0 sm:w-auto"
-          />
+        <div className="grid w-full grid-cols-2 items-center gap-x-2 gap-y-4 border-y border-neutral-200 py-4 max-sm:hidden sm:flex sm:justify-between sm:gap-x-5">
+          {filters.availability}
 
           <div className="contents sm:flex sm:flex-wrap sm:items-center sm:gap-x-2 sm:gap-y-3">
-            <Filter
-              items={[{ id: "insert", label: "Insert", count: 1 }]}
-              title="Product"
-              variant="type"
-              wrapperClassName="m-0 w-full justify-end p-0 sm:w-auto sm:justify-start"
-            />
-            <Filter
-              variant="price"
-              min={0}
-              max={283500}
-              step={5000}
-              currency="VND"
-              wrapperClassName="m-0 w-full justify-start p-0 sm:w-auto"
-            />
+            {filters.type}
+            {filters.price}
           </div>
 
-          <Filter
-            variant="sort"
-            items={sortOptions}
-            wrapperClassName="m-0 w-full justify-end p-0 sm:w-auto"
-          />
+          {filters.sort}
         </div>
 
         <section className="pt-10" aria-labelledby="by-game-products-heading">
@@ -77,6 +59,13 @@ export function ByGameName({ data }: ByGameNameProps) {
               {products.pagination.totalItems} product
             </p>
           </div>
+
+          <FilterMobileGroup>
+            {filters.availability}
+            {filters.type}
+            {filters.price}
+            {filters.sort}
+          </FilterMobileGroup>
 
           <ProductList
             products={products.data}
