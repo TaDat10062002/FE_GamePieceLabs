@@ -2,19 +2,33 @@ import type { AboutPageContent } from "@/features/about/types/about-content";
 
 export const aboutPageContent: AboutPageContent = {
   hero: {
-    eyebrow: "Về chúng tôi • GamePieceLabs",
-    title: "Chế tác phụ kiện & Nâng tầm trải nghiệm Board Game",
+    eyebrow: "Câu chuyện của chúng tôi, ván chơi của bạn",
+    title: "The Heart and Craft of Game Piece Labs",
     subtitle:
       "Chúng tôi kết hợp nghệ thuật thủ công tinh xảo, công nghệ cắt laser chính xác và vật liệu gỗ tuyển chọn để biến mỗi buổi chơi game thành một kỷ niệm đáng nhớ.",
     heroImageSrc: "/images/about/about-hero.jpg",
     heroImageAlt:
       "Bàn làm việc xưởng chế tác phụ kiện gỗ và organizer board game GamePieceLabs",
   },
+  story: {
+    eyebrow: "Our Story",
+    title: "Sinh ra từ những buổi chơi cần gọn gàng hơn",
+    lead: "Game Piece Labs bắt đầu từ một cảm giác rất quen thuộc với người chơi board game: mở hộp ra là thấy thẻ bài, token, mini và phụ kiện nằm lẫn vào nhau.",
+    paragraphs: [
+      "Chúng tôi muốn mỗi ván chơi bắt đầu nhanh hơn, setup ít mệt hơn và bàn chơi nhìn chỉn chu hơn. Từ nhu cầu đó, những khay gỗ, insert và phụ kiện đầu tiên được thiết kế để từng chi tiết có đúng vị trí của nó.",
+      "Mỗi sản phẩm đều được nhìn từ trải nghiệm thật trên bàn chơi: dễ lấy, dễ cất, vừa hộp game và đủ đẹp để trở thành một phần của buổi chơi.",
+    ],
+    quote: {
+      text: "Một chiếc organizer tốt không chỉ để cất đồ, nó giúp người chơi quay lại với phần vui nhất của board game nhanh hơn.",
+      author: "Game Piece Labs",
+      role: "Crafted for board gamers",
+    },
+  },
   craftsmanship: {
     eyebrow: "Kỹ nghệ chế tác",
-    title: "Chính xác đến từng milimet với công nghệ Laser hiện đại",
+    title: "Precision in play: the power of laser-cutting",
     description:
-      "Mỗi chi tiết đều trải qua quy trình thiết kế 3D nghiêm ngặt, cắt khắc laser CO2 công suất cao và được xử lý bề mặt thủ công tỉ mỉ để đảm bảo độ mượt mà tuyệt đối khi sử dụng.",
+      "Laser-cutting is an ideal technology for creating game organizers due to its precision. This method allows for extremely accurate cuts as well as the creation of complex designs that can include intricate details or customized features. Using quality birch plywood gave us a sturdy and still flexible material to complement this technology, making sorting and storing much easier.",
     showcaseVideo: {
       type: "youtube",
       src: "https://www.youtube.com/embed/HjsGUuQsQOY?si=ZcxnS0Ln7VPw4BqD",
@@ -53,34 +67,28 @@ export const aboutPageContent: AboutPageContent = {
     ],
   },
   values: {
-    eyebrow: "Giá trị cốt lõi",
+    eyebrow: "Product DNA",
     title: "Product DNA",
     description:
-      "As we shared our work, we quickly got a lot of positive feedback and started looking into production possibilities. With a blend of solid craftsmanship and a serious passion for gaming, Laserox came to life in 2017. Since then, we have developed many organizers and will continue to do so.",
+      "As we shared our work, we quickly got positive feedback from players and started refining our production. With solid craftsmanship and a serious passion for gaming, Game Piece Labs continues to develop organizers that make every game night smoother.",
     values: [
       {
-        title: "Nghệ thuật & Tinh tế",
+        title: "Superior design",
         description:
-          "Mỗi khay đựng và organizer không chỉ hữu dụng mà còn là một tác phẩm trang trí tôn vinh góc bàn chơi của bạn.",
+          "Every tray and insert is shaped around comfort, clean table presence, and fast access during play.",
         imageSrc: "/images/about/valuesBox1.jpg",
       },
       {
-        title: "Vật liệu Xanh (Play Green)",
+        title: "Premium materials",
         description:
-          "Ưu tiên vật liệu gỗ có nguồn gốc bền vững, hạn chế tối đa rác thải nhựa và đóng gói thân thiện với môi trường.",
+          "We choose durable wood surfaces that feel sturdy in hand and age naturally beside your games.",
         imageSrc: "/images/about/valuesBox2.jpg",
       },
       {
-        title: "Đồng hành cùng Người chơi",
+        title: "Sophisticated technology",
         description:
-          "Lắng nghe phản hồi từ cộng đồng board game thế giới để liên tục cập nhật thiết kế cho các bản mở rộng (expansions) mới nhất.",
+          "Laser-cut precision keeps each slot, divider, and detail aligned with the needs of a specific game.",
         imageSrc: "/images/about/valuesBox3.jpg",
-      },
-      {
-        title: "Độ bền Vượt thời gian",
-        description:
-          "Cấu trúc gia cố chịu lực bền bỉ, đồng hành cùng bạn qua hàng trăm giờ phiêu lưu và hàng ngàn ván đấu kịch tính.",
-        imageSrc: "https://laserox.net/cdn/shop/files/Rectangle_45_1.png?v=1715684448&width=414",
       },
     ],
   },

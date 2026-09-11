@@ -78,6 +78,7 @@ export type AboutCtaSection = {
 
 export type AboutPageContent = {
   hero: AboutHeroContent;
+  story: AboutStorySection;
   craftsmanship: AboutCraftsmanshipSection;
   values: AboutValuesSection;
   stats: AboutStatsSection;

@@ -1,6 +1,5 @@
-import Image from "next/image";
 import type { AboutValuesSection } from "@/features/about/types/about-content";
-import { Card } from "@/components/ui/card";
+import { AboutProductDnaCard } from "@/features/about/components/about-product-dna-card";
 
 type AboutValuesProps = {
   content: AboutValuesSection;
@@ -8,44 +7,23 @@ type AboutValuesProps = {
 
 export function AboutValues({ content }: AboutValuesProps) {
   return (
-    <section className="py-14 sm:py-18 lg:py-24">
-      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 xl:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="type-eyebrow text-red-600">
-            {content.eyebrow}
-          </p>
-          <h2 className="type-h2 mt-4 text-neutral-950">
+    <section className="bg-white py-12 sm:py-14 lg:py-20">
+      <div className="mx-auto w-[calc(100%-2rem)] max-w-[1580px] sm:w-[calc(100%-3rem)] xl:w-[calc(100%-100px)]">
+        <div className="mx-auto max-w-[760px] text-center">
+          <h2
+            className="text-4xl font-bold leading-[1.1] tracking-normal text-neutral-950 sm:text-5xl lg:text-[48px]"
+            style={{ textWrap: "wrap" }}
+          >
             {content.title}
           </h2>
-          <p className="type-prose mt-4 text-base text-neutral-600 sm:text-lg">
+          <p className="mx-auto mt-8 max-w-[720px] text-center text-[16px] font-medium leading-[1.8] text-neutral-800">
             {content.description}
           </p>
         </div>
 
-        <div className="mt-12 grid gap-6 sm:mt-16 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-14 grid gap-14 md:grid-cols-3 xl:gap-28">
           {content.values.map((value) => (
-            <Card
-              key={value.title}
-              className="group overflow-hidden border-neutral-200/80 bg-white px-5 pb-6 pt-5 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-red-200 hover:shadow-lg"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-neutral-100">
-                <Image
-                  src={value.imageSrc}  
-                  alt={value.title}
-                  fill
-                  sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-              </div>
-
-              <h3 className="type-h5 mt-6 text-neutral-950">
-                {value.title}
-              </h3>
-
-              <p className="mt-3 text-base leading-relaxed text-neutral-600">
-                {value.description}
-              </p>
-            </Card>
+            <AboutProductDnaCard key={value.title} value={value} />
           ))}
         </div>
       </div>

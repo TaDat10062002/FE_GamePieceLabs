@@ -7,10 +7,10 @@ type AboutCraftsmanshipProps = {
 
 export function AboutCraftsmanship({ content }: AboutCraftsmanshipProps) {
   return (
-    <section className="bg-white py-12 sm:py-16 lg:py-20">
-      <div className="mx-auto max-w-[1560px] px-4 sm:px-6 xl:px-10">
-        <div className="overflow-hidden rounded-[26px] border border-neutral-200/80 bg-white shadow-[0_18px_40px_rgba(15,23,42,0.05)]">
-          <div className="grid items-stretch lg:grid-cols-[minmax(0,1.18fr)_minmax(340px,0.82fr)]">
+    <section className="bg-white py-10 sm:py-12 lg:py-16">
+      <div className="mx-auto w-[calc(100%-2rem)] max-w-[1580px] sm:w-[calc(100%-3rem)] xl:w-[calc(100%-100px)]">
+        <div className="overflow-hidden rounded-xl border border-neutral-200/80 bg-white">
+          <div className="grid items-stretch lg:grid-cols-[minmax(0,1.03fr)_minmax(520px,0.97fr)]">
             <div className="h-full">
               <VideoFrame
                 type={content.showcaseVideo.type}
@@ -19,17 +19,16 @@ export function AboutCraftsmanship({ content }: AboutCraftsmanshipProps) {
               />
             </div>
 
-            <div className="flex items-center justify-center border-t border-neutral-200/70 px-5 py-8 sm:px-8 sm:py-9 lg:border-t-0 lg:border-l lg:px-9 lg:py-10">
-              <div className="mx-auto max-w-[35rem] text-center">
-                <p className="type-eyebrow text-neutral-500">
-                  {content.eyebrow}
-                </p>
-
-                <h2 className="type-h2 mt-3 text-neutral-950">
+            <div className="flex items-center justify-center border-t border-neutral-200/70 px-6 py-10 sm:px-10 lg:border-t-0 lg:border-l lg:px-10 xl:px-12">
+              <div className="mx-auto w-full max-w-[660px] text-center">
+                <h2
+                  className="mx-auto max-w-[573px] text-4xl font-bold leading-[1.1] tracking-normal text-neutral-950 sm:text-5xl lg:text-[48px]"
+                  style={{ textWrap: "wrap" }}
+                >
                   {content.title}
                 </h2>
 
-                <p className="type-prose mt-4 text-base text-neutral-600">
+                <p className="mx-auto mt-8 max-w-[640px] text-center text-[16px] font-medium leading-[1.95] text-neutral-800">
                   {content.description}
                 </p>
               </div>
