@@ -136,8 +136,8 @@ export default function StorefrontHomePage() {
         ariaLabel="The Game Piece Labs philosophy"
         className="overflow-hidden"
       >
-        <div className="flex flex-col items-center text-center">
-          <h2 className="bg-gradient-to-b from-neutral-300 to-white bg-clip-text text-[clamp(2.25rem,9.5vw,15rem)] leading-[1.2] font-black tracking-[-0.065em] whitespace-nowrap text-transparent">
+        <div className="flex flex-col items-center text-center border border-red-500">
+          <h2 className="bg-gradient-to-b from-neutral-300 to-white bg-clip-text text-[clamp(36px,10vw,192px)] leading-[1.2] font-black tracking-[-0.065em] whitespace-nowrap text-transparent">
             GAME PIECE LABS
           </h2>
 

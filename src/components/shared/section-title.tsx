@@ -44,7 +44,7 @@ export function SectionTitle(props: SectionTitleProps): ReactElement {
   return (
     <div
       className={cn(
-        "px-5 sm:px-[clamp(48px,calc(37.333333vw-556.8px),160px)]",
+        "px-5 sm:px-section-padding",
         props.content !== "imageSlider" && "pt-[80px]",
       )}
     >
