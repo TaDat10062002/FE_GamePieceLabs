@@ -8,6 +8,7 @@ import type { SectionTitleMoreProps } from "./types";
 
 export function CardGridSection({
   title,
+  headingLevel,
   more,
   align,
   orientation,
@@ -20,7 +21,7 @@ export function CardGridSection({
     <section
       aria-labelledby={titleId}
       className={cn(
-        "mx-auto w-full max-w-[1900px] px-4 sm:px-6 xl:px-[50px]",
+        "mx-auto w-full",
         className,
       )}
     >
@@ -28,6 +29,7 @@ export function CardGridSection({
         <SectionHeading
           title={title}
           titleId={titleId}
+          headingLevel={headingLevel}
           more={more}
           align={align}
           orientation={orientation}

@@ -6,6 +6,7 @@ import { cn } from "@/utils/cn";
 
 import type {
   SectionTitleAlign,
+  SectionTitleHeadingLevel,
   SectionTitleMore,
   SectionTitleOrientation,
 } from "./types";
@@ -13,6 +14,7 @@ import type {
 interface SectionHeadingProps {
   title: string;
   titleId: string;
+  headingLevel?: SectionTitleHeadingLevel;
   more?: SectionTitleMore;
   align?: SectionTitleAlign;
   orientation?: SectionTitleOrientation;
@@ -31,6 +33,15 @@ const verticalAlignmentClasses: Record<SectionTitleAlign, string> = {
   right: "items-end",
 };
 
+const headingSizeClasses: Record<SectionTitleHeadingLevel, string> = {
+  h1: "text-5xl",
+  h2: "text-4xl",
+  h3: "text-3xl",
+  h4: "text-2xl",
+  h5: "text-xl",
+  h6: "text-lg",
+};
+
 export function createSectionTitleId(title: string): string {
   const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
@@ -40,11 +51,14 @@ export function createSectionTitleId(title: string): string {
 export function SectionHeading({
   title,
   titleId,
+  headingLevel = "h2",
   more,
   align = "left",
   orientation = "horizon",
   className,
 }: SectionHeadingProps): ReactElement {
+  const HeadingTag = headingLevel;
+
   return (
     <div
       className={cn(
@@ -55,25 +69,30 @@ export function SectionHeading({
         className,
       )}
     >
-      <h2
+      <HeadingTag
         id={titleId}
         className={cn(
-          "type-h2 m-0 min-w-0 flex-1 text-neutral-950",
+          "m-0 min-w-0 flex-1 font-bold text-neutral-950",
+          headingSizeClasses[headingLevel],
           titleAlignmentClasses[align],
         )}
       >
         {title}
-      </h2>
+      </HeadingTag>
 
       {more ? (
         <Link
           href={more.href || "#"}
-          className="group inline-flex w-fit items-center gap-4 rounded-full text-base font-bold text-neutral-950 outline-none transition-colors hover:text-red-600 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 sm:text-lg"
+          className="group inline-flex w-fit items-center gap-2 rounded-full text-xs font-medium text-neutral-950 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 sm:text-sm"
         >
-          {more.label}
+          {/* Thẻ span bọc chữ để chạy hiệu ứng line */}
+          <span className="relative after:absolute after:bottom-0 after:left-0 after:h-[0.8px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:duration-500 group-hover:after:scale-x-100">
+            {more.label}
+          </span>
 
-          <span className="flex size-8 items-center justify-center rounded-full bg-neutral-200 text-neutral-700 transition-colors group-hover:bg-red-600 group-hover:text-white">
-            <ChevronRight className="size-4" aria-hidden="true" />
+          {/* Icon ChevronRight giữ nguyên bên ngoài */}
+          <span className="flex size-5 items-center justify-center rounded-full bg-neutral-200 text-neutral-700 transition-colors">
+            <ChevronRight className="size-3" aria-hidden="true" />
           </span>
         </Link>
       ) : null}

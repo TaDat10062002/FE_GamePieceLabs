@@ -58,56 +58,55 @@ const imageSliderSlides = [
 
 export default function StorefrontHomePage() {
   return (
-    <main className="bg-white">
+    <main className="bg-neutral-50/60">
       {/* Image slider */}
-      <div className="pt-6 sm:pt-8">
-        <div className="mx-auto w-[calc(100%-2rem)] sm:w-[calc(100%-3rem)] sm:max-w-[620px] lg:max-w-[940px] xl:w-[calc(100%-100px)] xl:max-w-[1580px]">
-          <ImageSlider
-            slides={imageSliderSlides}
-            autoplay
-            autoplayInterval={5000}
-            ariaLabel="Bộ sưu tập nổi bật"
-          />
-        </div>
-      </div>
+      <SectionTitle content="imageSlider" ariaLabel="Bộ sưu tập nổi bật">
+        <ImageSlider
+          slides={imageSliderSlides}
+          autoplay
+          autoplayInterval={5000}
+          ariaLabel="Bộ sưu tập nổi bật"
+        />
+      </SectionTitle>
 
-      <SectionTitleGroupProps>
-        <SectionTitle
-          title="Choose Your Gear"
-          more={{
-            label: "Browse all categories",
-            href: "/products",
-          }}
-        >
-          {gearCategories.map((category) => (
-            <CardImageTitle
-              key={category.title}
-              {...category}
-              prefix="/collections"
-              isClicked={true}
-            />
-          ))}
-        </SectionTitle>
-      </SectionTitleGroupProps>
+      <SectionTitle
+        title="Choose Your Gear"
+        more={{
+          label: "Browse all categories",
+          href: "/products",
+        }}
+      >
+        {gearCategories.map((category) => (
+          <CardImageTitle
+            key={category.title}
+            {...category}
+            prefix="/collections"
+            isClicked={true}
+          />
+        ))}
+      </SectionTitle>
 
       <MarqueeText
         title="Mastery is a never-ending exploration"
         speed={30}
         fontSize="text-8xl"
+        className="pb-20"
       />
 
       <SectionTitle
-        title="Maximize Your Game Time"
+        title="Clear Space, Clear Strategy"
         orientation="vertical"
         align="center"
         content="split"
+        headingLevel="h6"
+        className="pt-0 px-12 pb-20"
       >
-        <div className="mb-8 space-y-3 text-center sm:mb-10 sm:space-y-4">
-          <p className="text-sm font-bold tracking-[0.12em] text-red-600 uppercase sm:text-base">
-            Clear Space, Clear Strategy
+        <div className="mb-8 space-y-3 text-center sm:mb-10 sm:space-y-4 -mt-5">
+          <p className="text-[24px] sm:text-[48px] font-bold capitalize">
+            Maximize Your Game Time
           </p>
 
-          <p className="mx-auto max-w-3xl text-pretty text-base leading-relaxed font-semibold text-neutral-700 sm:text-lg">
+          <p className=" text-[14px] sm:text-[16px] mx-auto max-w-3xl text-pretty text-base leading-relaxed font-medium">
             We all know the frustration of wasting hours of precious game time
             on game setup and teardown. With Laserox, you can set up in a snap
             and stay organized, no matter how complex the campaign gets.
@@ -120,26 +119,25 @@ export default function StorefrontHomePage() {
         />
       </SectionTitle>
 
-      <div className="py-16 sm:py-20">
-        <SectionTitle
-          title="Featured Products"
-          more={{ label: "View all", href: "/products" }}
-        >
-          <div className="col-span-full">
-            <ProductGallery type="featured" images={featuredProducts} />
-          </div>
-        </SectionTitle>
-      </div>
+      <SectionTitle
+        title="Featured Products"
+        more={{ label: "View all", href: "/products" }}
+        className="px-12 py-20"
+      >
+        <div className="col-span-full">
+          <ProductGallery type="featured" images={featuredProducts} />
+        </div>
+      </SectionTitle>
 
       <SectionTitle
         orientation="vertical"
         align="center"
         content="split"
         ariaLabel="The Game Piece Labs philosophy"
-        className="overflow-hidden bg-neutral-50/60"
+        className="overflow-hidden"
       >
         <div className="flex flex-col items-center text-center">
-          <h2 className="bg-gradient-to-b from-neutral-300 to-white bg-clip-text text-[clamp(2.25rem,9.5vw,9rem)] leading-[0.82] font-black tracking-[-0.065em] whitespace-nowrap text-transparent">
+          <h2 className="bg-gradient-to-b from-neutral-300 to-white bg-clip-text text-[clamp(2.25rem,9.5vw,15rem)] leading-[1.2] font-black tracking-[-0.065em] whitespace-nowrap text-transparent">
             GAME PIECE LABS
           </h2>
 
@@ -166,29 +164,27 @@ export default function StorefrontHomePage() {
             </Button>
           </div>
         </div>
-
-        <ProductDemo className="px-0 pt-12 pb-0 sm:px-0 sm:pt-16 sm:pb-0" />
       </SectionTitle>
+
       {/* 
       <VideoFrame
         type="youtube"
         src="https://www.youtube.com/embed/HjsGUuQsQOY?si=ZcxnS0Ln7VPw4BqD"
       /> */}
 
-      <SectionTitleGroupProps>
-        <SectionTitle
-          title="Browse By Game"
-          more={{
-            label: "View all games",
-            href: "/products",
-          }}
-          align="left"
-        >
-          {gameCategories.map((game) => (
-            <CardImageTitle key={game.title} {...game} prefix="/collections" />
-          ))}
-        </SectionTitle>
-      </SectionTitleGroupProps>
+      <SectionTitle
+        title="Browse By Game"
+        more={{
+          label: "View all games",
+          href: "/products",
+        }}
+        align="left"
+        className="px-12 py-20"
+      >
+        {gameCategories.map((game) => (
+          <CardImageTitle key={game.title} {...game} prefix="/collections" />
+        ))}
+      </SectionTitle>
 
       <PlayerReviewsSection
         variant="image"

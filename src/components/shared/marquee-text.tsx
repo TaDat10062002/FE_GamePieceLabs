@@ -44,7 +44,6 @@ export function MarqueeText({
         <div
             className={cn(
                 'w-full overflow-hidden text-zinc-200',
-                'my-10',
                 className,
             )}
         >
@@ -76,7 +75,7 @@ export function MarqueeText({
                         {repetitions.map((item) => (
                             <span
                                 className={cn(
-                                    'shrink-0 whitespace-nowrap px-7 font-bold leading-none tracking-tight sm:px-14',
+                                    'shrink-0 whitespace-nowrap px-7 font-bold leading-none tracking-tight sm:px-14 text-[100px]',
                                     fontSizeClasses[fontSize],
                                 )}
                                 key={item}

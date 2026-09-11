@@ -7,6 +7,7 @@ import type { SectionTitleMoreProps } from "./types";
 
 export function TextContentSection({
   title,
+  headingLevel,
   more,
   align,
   orientation,
@@ -24,6 +25,7 @@ export function TextContentSection({
         <SectionHeading
           title={title}
           titleId={titleId}
+          headingLevel={headingLevel}
           more={more}
           align={align}
           orientation={orientation}

@@ -82,7 +82,7 @@ export function ImageSlider({
       opts={{ loop: hasMultipleSlides }}
       aria-label={ariaLabel}
       className={cn(
-        "w-full overflow-hidden rounded-xl shadow-[0_18px_60px_rgba(15,23,42,0.16)]",
+        "w-[1600px] mx-auto mt-10 overflow-hidden rounded-xl shadow-[0_18px_60px_rgba(15,23,42,0.16)]",
         className,
       )}
     >
