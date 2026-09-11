@@ -1,4 +1,4 @@
-import type { ProductCardProps } from "@/components/shared/product-card";
+import { ProductCardProps } from "@/components/shared/product/product-card";
 
 export type SearchSortOption =
   | "relevance"

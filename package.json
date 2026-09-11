@@ -3,11 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "npm run styles:less",
-    "prebuild": "npm run styles:less",
-    "styles:less": "node scripts/compile-shared-less.mjs",
-    "styles:less:watch": "node scripts/compile-shared-less.mjs --watch",
-    "dev": "concurrently --kill-others-on-fail \"npm run styles:less:watch\" \"next dev\"",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
